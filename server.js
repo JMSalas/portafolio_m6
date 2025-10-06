@@ -79,7 +79,7 @@ app
     // Actualizar la producto.
     const updatedProduct = await productsAdmin.updateProduct(req.params.id, req.body);
 
-    // Si se actualiza el producto, enviar la respuesta 204.
+    // Si se actualiza el producto, enviar la respuesta 201.
     res.status(201).json(updatedProduct);
   })
   .delete(async (req, res) => {
