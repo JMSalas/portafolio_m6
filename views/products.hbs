@@ -1,0 +1,92 @@
+ <main class="container-xxl">
+    <section class="w-100 border rounded-5 text-center p-5 shadow-lg bg-light my-4">
+        <h2><i class="bi bi-plus-lg text-success"></i> Add Product</h2>
+        <hr>
+        <form id="formAddProduct" action="/task" method="post" class="w-100 mx-auto">
+            <div class="input-group mb-3">
+                <input id="nameInput" type="text" class="form-control" placeholder="Product Name" required>
+                <input id="priceInput" type="number" class="form-control" placeholder="Price" min="0" required>
+                <input id="quantityInput" type="number" class="form-control" placeholder="Quantity" min="0" required>
+                <button class="btn btn-outline-success" type="submit"><i class="bi bi-plus-lg"></i></button>
+            </div>
+        </form>    
+    </section>
+
+    <section class="w-100 border rounded-5 text-center p-5 shadow-lg bg-light my-4">
+        <h2><i class="bi bi-box-fill text-success"></i> Inventory</h2>
+        <hr>
+        <table class="table table-striped {{#unless products.length }}d-none{{/unless}}" >
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th class="text-center" scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each products}}
+                <tr>
+                    <th>{{ this.id }}</th>
+                    <td data-product-name>{{ this.name }}</td>
+                    <td data-product-price>{{ this.price }}</td>
+                    <td data-product-quantity>{{ this.quantity }}</td>
+                    <td class="smallColumn">
+                        <div class="d-flex justify-content-evenly">
+                            <button class="btn btn-outline-primary" data-id="{{ this.id }}" data-bs-toggle="modal" data-bs-target="#updateProduct"><i class="bi bi-pencil-square"></i> Edit</button>
+                            <button class="btn btn-outline-danger" data-id="{{ this.id }}" data-button="delete"><i class="bi bi-trash3-fill"></i> Delete</button>     
+                        </div>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <div id='emptyAlert' class="alert alert-warning fs-3 text-center {{#if products.length }}d-none{{/if}}" role="alert" >
+            <i class="bi bi-exclamation-triangle"></i> Empty Inventory, please add some products.
+        </div>
+    </section>
+ </main>
+
+ <!-- Modal -->
+<div class="modal fade" id="updateProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Product ID: <span id="spanId"></span></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="formUpdateProduct">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="newNameInput" class="form-label">Product Name:</label>
+                        <input type="text" class="form-control" id="newNameInput" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="newPriceInput" class="form-label">Product Price:</label>
+                        <input type="number" class="form-control" id="newPriceInput" min="1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="newQuantityInput" class="form-label">Product Quantity:</label>
+                        <input type="number" class="form-control" id="newQuantityInput" min="1" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="updateButton" type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Toast -->
+<div class="toast-container position-fixed top-0 end-0 p-3">
+    <div id="toastError" class="toast text-bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto">Error del Servidor</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="toastErrorMessage">
+            </div>
+    </div>
+</div>

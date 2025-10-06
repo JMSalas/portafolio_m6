@@ -1,0 +1,21 @@
+/* * {
+    border : dashed black 1px;
+} */
+
+body{
+    background-image: url('/images/noise.png');
+    /* font-family: "Raleway", sans-serif; */
+    font-family: "Roboto", sans-serif;
+}
+
+.nav-link{
+    color: green;
+}
+
+.nav-link.active{
+    background-color : #198754 !important;
+}
+
+.smallColumn {
+  width: 200px;
+}
