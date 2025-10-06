@@ -160,19 +160,19 @@ await productFetch(`/products/${this.test?999:btnDelete.dataset.id}`,
 
 Al pasar `test = true` a la clase `ProductsUI`, las solicitudes `DELETE` y `PUT` intentarán usar el ID `999`. Dado que este ID probablemente no existe en `products.json`, esto forzará un error 500/404 que será capturado por el `try...catch` del frontend, permitiendo verificar el correcto funcionamiento del `showToast` y la captura de error al actualizar o eliminar productos.
 
-Error: Producto ID: ${id}, no encontrado. No se han actualizado productos.
+`Error: Producto ID: ${id}, no encontrado. No se han actualizado productos.`
 
-Error: Producto ID: ${id}, no encontrado. No se han eliminado productos
+`Error: Producto ID: ${id}, no encontrado. No se han eliminado productos`
 
 2. Cambiar los permisos del archivo products.json para que permita solo lectura. Esto levanta errores que se muestran en consola del servidor, consola del browser, y mensajes al usuario en toast de bootstrap.
 
-Error: ([CREATE, UPDATE, DELETE]) No se pudo escribir en el archivo de productos.
+`Error: ([CREATE, UPDATE, DELETE]) No se pudo escribir en el archivo de productos.`
 
 3. Si en el archivo server.js se cambia el valor de `const productFile = "products.json";`, Se registran errores en la consola del servidor, consola del browser, y un json que se muestra al usuario (al levantarse el error no se renderiza la página) con el mensaje:
 
-Error: (READ) No se pudo leer el archivo de productos.
+`Error: (READ) No se pudo leer el archivo de productos.`
 
-4. La ruta en "Contactos" no ha sido definida, por lo tanto deriva a la pagaina de error 404.
+4. La ruta en "Contactos" no ha sido definida, por lo tanto deriva a la página de error 404.
 -----
 
 ## 👨‍💻 Autor
