@@ -114,13 +114,6 @@ app.use((err, req, res, next) => {
           message: message,
       }
   });
-
-  // res.status(statusCode).render("error", {
-  //   title: `Error ${res.statusCode}`,
-  //   ruta: 'Ruta Default',
-  //   errorCode: res.statusCode,
-  //   pageScripts: ["scriptNavbar"],
-  // });
 });
 
 app.all("/{*ruta}", (req, res) => {
