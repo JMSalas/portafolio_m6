@@ -66,10 +66,10 @@ app
     });
   })
   .post(async (req, res) => {
-    // Agrego nueva producto no a archivo .json de productos
+    // Agrego nueva producto a archivo .json de productos
     const newProduct = await productsAdmin.addProduct(req.body);
 
-    // Si se agrega el nuevo producto, enviar la respuesta 204.
+    // Si se agrega el nuevo producto, enviar la respuesta 201.
     res.status(201).json(newProduct); 
   });
 
