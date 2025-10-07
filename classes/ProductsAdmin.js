@@ -9,7 +9,7 @@ export class ProductsAdmin {
     async getProducts(method = 'READ') {
         const products = await readLocalFile(this.path);
         if (products === null) {
-            throw new Error(`(${method}) No se pudo leer el archivo de productos.`);
+            throw new Error(`(${method}) No se pudo leer el archivo de datos.`);
         }
         return products;
     }
@@ -17,7 +17,7 @@ export class ProductsAdmin {
     async setProducts(products, method) {
         const success = await writeLocalFile(this.path, products);
         if (!success) {
-            throw new Error(`(${method}) No se pudo escribir en el archivo de productos.`);
+            throw new Error(`(${method}) No se pudo escribir en el archivo de datos.`);
         }
         return success;
     }

@@ -168,9 +168,9 @@ Al pasar `test = true` a la clase `ProductsUI`, las solicitudes `DELETE` y `PUT`
 
 `Error: ([CREATE, UPDATE, DELETE]) No se pudo escribir en el archivo de productos.`
 
-3. Si en el archivo server.js se cambia el valor de `const productFile = "products.json";`, Se registran errores en la consola del servidor, consola del browser, y un json que se muestra al usuario (al levantarse el error no se renderiza la página) con el mensaje:
+3. Si en el archivo server.js se cambia el valor de `const productFile = "products.json";` o el archivo "products.json" no existe en el directorio raiz del proyecto, Se registran errores en la consola del servidor, consola del browser, y se renderiza una página de error con el mensaje:
 
-`Error: (READ) No se pudo leer el archivo de productos.`
+`Error: (READ) No se pudo leer el archivo de datos.`
 
 4. La ruta en "Contactos" no ha sido definida, por lo tanto deriva a la página de error 404.
 -----
