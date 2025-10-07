@@ -113,6 +113,7 @@ app.use((err, req, res, next) => {
     },
     pageScripts: ["scriptNavbar"],
     });
+    return;
   }
 
   // Determinar el estado y el mensaje
