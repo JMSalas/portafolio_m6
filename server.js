@@ -83,7 +83,7 @@ app
     res.status(201).json(updatedProduct);
   })
   .delete(async (req, res) => {
-    // Eliminar Prodcuto
+    // Eliminar Producto
     await productsAdmin.deleteProduct(req.params.id);
 
     // Responder con el código estándar para DELETE exitoso sin contenido.
@@ -103,6 +103,18 @@ app.use((err, req, res, next) => {
   console.error(chalk.redBright("*** Error capturado por el middleware de errores ***"));
   console.error(chalk.redBright(err));
 
+    // Error al leer inicialmente el archivo de persistencia
+  if (err.message == '(READ) No se pudo leer el archivo de datos.') {
+    res.status(404);   
+    res.render("error", {
+    title: `Error ${res.statusCode}`,
+    error: {
+      message: `Error: ${err.message}`
+    },
+    pageScripts: ["scriptNavbar"],
+    });
+  }
+
   // Determinar el estado y el mensaje
   // Para errores lanzados desde ProductsAdmin, usaremos 500
   const statusCode = err.statusCode || 500;
@@ -121,8 +133,9 @@ app.all("/{*ruta}", (req, res) => {
   res.status(404);
   res.render("error", {
     title: `Error ${res.statusCode}`,
-    ruta: ruta,
-    errorCode: res.statusCode,
+    error: {
+      message: `Página ruta "${ruta}", no encontrada`
+    },
     pageScripts: ["scriptNavbar"],
   });
 });
